@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Ввод данных рекрута</title>
+    <link rel="stylesheet" href="{% static 'css/styles_recruit.css' %}" type="text/css"/>
+</head>
+<body>
+<h2>Ввод данных рекрута</h2>
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+    <br><button type="submit" class="but">Добавить в базу рекрутов</button>
+</form>
+{% if count_without_test > 0 %}
+<h2 style="margin:30px 0 30px 0">или</h2>
+<h2>Выберите рекрута, ещё не сдававшего тест, из списка:</h2>
+<form method="POST" action="../choice/">
+    {% csrf_token %}
+    <table>
+        {{choiceform.as_table}}
+    </table>
+    <br><button type="submit" class="but">Выбрать рекрута</button>
+</form>
+{% endif %}
+</body>
+</html>

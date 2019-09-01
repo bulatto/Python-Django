@@ -1,0 +1,32 @@
+    .wrong{background-color: rgb(235, 82, 82)}
+    .correct{background-color: rgb(100, 191, 82)}
+    .error{
+    color:#c66;
+    border: 5px #c66 double;
+    display: inline-block;
+    }
+    *{
+    text-align:center;
+    }
+    table{
+    margin: auto;
+    border-collapse: collapse;
+    }
+    td, th {
+    padding: 10px;
+    border: 2px solid gray;
+    font-size: 18px;
+    }
+    th{
+    background-color:#dcdcdc;
+    }
+    a:hover{
+    color: red;
+    }
+    a{
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    color: black; }
+    }

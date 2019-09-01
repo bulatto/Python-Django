@@ -1,0 +1,35 @@
+html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    .container{min-height: 100%;}
+    .container div{
+    position: absolute;
+    top: 50%;
+    width:50%;
+    margin-top: -29px;
+    }
+    #sith{
+    left:0px;
+    }
+    #recruit{
+    left:50%;
+    }
+    #arecr{
+    background: rgb(99, 99, 255);
+    }
+    #asith{
+    background: rgb(247, 104, 104);
+    }
+    a{
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    font-size: 50px;
+    color: black;
+    width:70%;
+    margin:auto;
+    border: 5px solid black;
+    }

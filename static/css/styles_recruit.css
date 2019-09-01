@@ -1,0 +1,26 @@
+    .wrong{background-color: rgb(235, 82, 82)}
+    .correct{background-color: rgb(100, 191, 82)}
+    .error{
+    color:#c66;
+    border: 5px #c66 double;
+    display: inline-block;
+    }
+    *{
+    font-size:16px;
+    }
+    h2{
+    font-size:20px;
+    text-align: center;
+    }
+    .but {
+    margin: auto;
+    display: block;
+}
+    table{
+    margin: auto;
+    border-collapse: collapse;
+    }
+    td, th {
+    padding: 5px;
+    }
+}

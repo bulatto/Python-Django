@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Выбор ситха</title>
+    <link rel="stylesheet" href="{% static 'css/styles_sith.css' %}" type="text/css"/>
+</head>
+<body>
+{% if siths.count > 0 %}
+<h2> Выберите ситха из указанного списка!</h2><br/>
+<table>
+    <tr>
+        <th>Ситх</th>
+        <th>Планета</th>
+    </tr>
+    {% for sith in siths %}
+    <tr>
+        <td><a href="/sith/{{sith.id}}/">{{sith.name}}</a></td>
+        <td>{{sith.planet.name}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<h2 style="margin:30px 0 30px 0">или</h2>
+<h2><a style="color:rgb(148, 10, 10);text-decoration: underline;" href="info/">Просмотрите информацию обо всех ситхах</a></h2>
+{% else %}
+<h2 class="error">Нет ни одного ситха!</h2>
+{% endif %}
+</body>
+</html>

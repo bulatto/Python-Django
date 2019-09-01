@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Тест для рекрута {{name}}</title>
+    <style>
+    *{text-align: center;}
+    </style>
+</head>
+<body>
+<h1>Тест для рекрута {{name}}</h1>
+<form method="POST">
+    {% csrf_token %}
+    {% if questions.count > 0 %}
+    {% for q in questions %}
+    <p class="quest"><b>{{ q.question }}</b></p>
+    <p class="answ"><input type="radio" name="question{{q.id}}" value=True>Да</p>
+    <p class="answ"><input type="radio" name="question{{q.id}}" value=False>Нет</p>
+    <br>
+    {% endfor %}
+    <p>
+        <button type="submit">Сохранить</button>
+    </p>
+    {% else %}
+    <h2>Тест не содержит вопросов! Что-то пошло не так!</h2>
+    {% endif %}
+</form>
+</body>
+</html>
