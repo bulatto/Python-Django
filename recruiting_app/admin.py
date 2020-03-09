@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Planet,Recruit,Sith,Test,Result
+from .models import Planet, Recruit, Sith, Test, Result
 
 admin.site.register(Planet)
 admin.site.register(Recruit)

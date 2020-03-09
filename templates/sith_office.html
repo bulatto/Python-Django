@@ -10,7 +10,10 @@
 <body>
 <h2>Кабинет ситха {{sith.name}}</h2>
 <h3>Список рекрутов на планете "{{sith.planet.name}}", прошедших тест, но еще не получивших звания Руки Тени:</h3>
-{% if recruits.count > 0 %}
+
+{% if not recruits %}
+<h3 class="error">Нет ни одного рекрута, удовлетворяющего условиям!</h3>
+{% else %}
 <table>
     <tr>
         <th rowspan="2">ID</th>
@@ -18,11 +21,11 @@
         <th rowspan="2">Возраст</th>
         <th rowspan="2">Электронная почта</th>
         <th rowspan="2">Количество<br>правильных<br>ответов</th>
-        <th colspan="{{question_count}}">Ответы на вопросы</th>
+        <th colspan="{{questions_count}}">Распределение правильных ответов</th>
     </tr>
     <tr>
         {% for q in num %}
-        <th>{{q|add:"1"}}</th>
+        <th>{{ q|add:"1" }}</th>
         {% endfor %}
     </tr>
     {% for rec in recruits %}
@@ -31,16 +34,14 @@
         <td>{{rec.name}}</td>
         <td>{{rec.age}}</td>
         <td>{{rec.email}}</td>
-        <td>{{answers|get:rec.id|get:question_count}}</td>
-        {% for q in num %}
-        {% with ans=answers|get:rec.id|get:q %}{% with correct=qa|get:q|get:1 %}
-        {% if ans == correct %}
-        <td class="correct">{% else %}
-        <td class="wrong">{% endif %}
-            {{ans}}
-        </td>
-        {% endwith %}{% endwith %}
+        <td>{{answers|get:rec.id|length}}</td>
+
+        {% with ans=answers|get:rec.id %}
+        {% for q, anw in questions %}
+        {% if q in ans%}<td class="correct">{% else %} <td class="wrong">{% endif %}{{q.id}}</td>
         {% endfor %}
+        {% endwith %}
+
         {% if count_hands_of_shadow < 3 %}
         <form method="POST">
             {% csrf_token %}
@@ -49,28 +50,27 @@
             </td>
         </form>
         {% endif %}
+
     </tr>
     {% endfor %}
 </table>
 <p style="color:gray; font-size:12px;">*Зелёным цветом отмечены правильные ответы, красным - неправильные.</p>
+
 <h3 style="margin-top:30px;">Вопросы теста:</h3>
-{% if question_count > 0 %}
+{% if questions %}
 <table>
-    <tr>
-        <th>№</th>
-        <th>Вопрос</th>
-    </tr>
+    <tr><th>№</th><th>Вопрос</th></tr>
     {% for q in num %}
     <tr>
         <td>{{q|add:"1"}}</td>
-        <td>{{qa|get:q|get:0}}</td>
+        <td>{{questions|get:q|get:1}}</td>
     </tr>
     {% endfor %}
 </table>
 {% endif %}
-{% else %}
-<h3 class="error">Нет ни одного рекрута, удовлетворяющего условиям!</h3>
+
 {% endif %}
+
 {% if count_hands_of_shadow > 0 %}
 <h3 style="margin-top:30px;">Руки Тени Ситха:</h3>
 <table>

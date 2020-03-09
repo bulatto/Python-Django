@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="{% static 'css/styles_sith_info.css' %}" type="text/css"/>
 </head>
 <body>
+{% if not siths %}
+<h3 class="error">Нет ни одного ситха!</h3>
+{% else %}
 <h3>Список ситхов с указанием количества их Рук Теней:</h3>
-{% if sith.count > 0 %}
 <table>
     <tr>
         <th>ID</th>
@@ -17,7 +19,7 @@
         <th>Планета</th>
         <th>Количество Рук Теней</th>
     </tr>
-    {% for s in sith %}
+    {% for s in siths %}
     <tr>
         <td>{{s.id}}</td>
         <td>{{s.name}}</td>
@@ -27,7 +29,6 @@
     {% endfor %}
 </table>
 <h3 style="margin-top:30px;">Ситхи, которые имеют хотя бы одну Руку Тени:</h3>
-{% if moreone > 0 %}
 <table>
     <tr>
         <th>ID</th>
@@ -35,7 +36,7 @@
         <th>Планета</th>
         <th>Количество Рук Теней</th>
     </tr>
-    {% for s in sith %}
+    {% for s in siths %}
     {% if count|get:s.id > 0 %}
     <tr>
         <td>{{s.id}}</td>
@@ -46,11 +47,6 @@
     {% endif %}
     {% endfor %}
 </table>
-{% else %}
-<h3 class="error">Нет ни одного ситха, который бы имел хотя бы одну Руку Тени!</h3>
-{% endif %}
-{% else %}
-<h3 class="error">Нет ни одного ситха!</h3>
 {% endif %}
 </body>
 </html>

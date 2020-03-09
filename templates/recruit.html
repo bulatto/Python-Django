@@ -11,7 +11,7 @@
 <form method="POST">
     {% csrf_token %}
     <table>
-        {{form.as_table}}
+        {{userform.as_table}}
     </table>
     <br><button type="submit" class="but">Добавить в базу рекрутов</button>
 </form>
